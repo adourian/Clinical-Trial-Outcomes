@@ -35,7 +35,7 @@ To leverage the feature-rich, multi-modal nature of the data, we employed a mult
 
 The rationale behind this architecture is to allow the model to discover relevant features specific to each data type more effectively. By processing each modality separately before combining them, the model can capture nuanced patterns within each data type. This approach enhances the model's ability to assess the probability of trial success by considering the unique contributions of each data modality.
 
-![image](https://github.com/user-attachments/assets/4fe4ce02-2cdd-4847-84df-2966ddf65957)
+![image](https://github.com/user-attachments/assets/296275dd-f74e-451a-b090-4696400fc123)
 > *Figure 3:* Simplified representation of model. More details about architecture in notebook clinical_trial_outcomes.ipynb. 
 
 
