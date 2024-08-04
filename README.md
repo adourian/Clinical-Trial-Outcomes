@@ -11,7 +11,7 @@ Drug development is a lengthy, expensive, and high-risk process, typically takin
 
 ## Data
 
-The dataset used in this project is derived from the official U.S. Food and Drug Administration (FDA) database at clinicaltrials.gov. The outcome labeling was performed by Fu et al. in their work on the HINT model ([1](https://arxiv.org/abs/2102.04252)) and further refined by IQVIA, resulting in a benchmark dataset. We enhanced this dataset by incorporating brief trial descriptions retrieved from clinicaltrials.gov using the unique NCTID identifiers.
+The dataset used in this project is derived from the official U.S. Food and Drug Administration (FDA) database at clinicaltrials.gov. The outcome labeling was performed by Fu et al. ([1](https://arxiv.org/abs/2102.04252)) and further refined by IQVIA, resulting in a benchmark dataset. We enhanced this dataset by incorporating brief trial descriptions retrieved from clinicaltrials.gov using the unique NCTID identifiers.
 
 Main features include:
 
