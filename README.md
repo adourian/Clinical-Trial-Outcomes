@@ -21,7 +21,7 @@ Main features include:
 - Protocol descriptions (Inclusion/exclusion criteria, brief text description of trial)
 - Clinical trial phases
 
-The clinical trial phases are one-hot encoded. The text and SMILES features are transformed into semantically rich embeddings. Several embedding/language models were tested. 
+The clinical trial phases are one-hot encoded. The text and SMILES features are transformed into semantically rich embeddings. For diseases, an experiment was conducted in the Diseases.ipynb notebook to test different embedding models. A PCA analysis was performed on the resulting embeddings to see if biologically-related terms are grouped together. Two models stood out from the rest, MedBERT and tinyBioBERT. MedBERT embeddings ended up being used due to performing better in the final models. 
 
 ![PCA_diseases](https://github.com/user-attachments/assets/560721c0-92cf-4339-b0bb-b369426add72)
 
