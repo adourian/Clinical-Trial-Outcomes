@@ -6,7 +6,7 @@ Drug development is a lengthy, expensive, and high-risk process, typically takin
 
 ![image](https://github.com/user-attachments/assets/a1d6b8c0-e531-47e1-b56a-b01f2f809e4c)
 <div style="text-align: center;">
-***Figure 1:*** overview of process
+*Figure 1:* overview of process
 </div>
 
 
@@ -25,7 +25,11 @@ Main features include:
 The clinical trial phases are one-hot encoded. The text and SMILES features are transformed into semantically rich embeddings. Several embedding/language models were tested. 
 
 ![PCA_diseases](https://github.com/user-attachments/assets/560721c0-92cf-4339-b0bb-b369426add72)
-***Figure 2: PCA analysis of embeddings for diseases. Analysis carried out in Diseases.ipynb. Similar diseases are grouped close by together, suggesting that the embedding models effectively capture biologically relevant information about the diseases.*** 
+
+<div style="text-align: center;">
+  *Figure 2:* PCA analysis of embeddings for diseases. Analysis carried out in Diseases.ipynb. Similar diseases are grouped close by together, suggesting that the embedding models effectively capture biologically relevant information about the diseases.
+</div>
+
 
 ## Data
 
