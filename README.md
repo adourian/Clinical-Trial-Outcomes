@@ -46,6 +46,8 @@ The model performed better than the baseline model and XGBoost:
 ![image](https://github.com/user-attachments/assets/b7b4795e-66f5-4ca8-8e57-79bda40e96bb)
 > *Figure 4:* Accuracy of models
 
+The model performance was also similar to the more complex, GNN-based HINT model. This would suggest that the HINT authors' intuition, that the good performance compared to previous benchmarks is at least partly due to the integration of information rich, multi-modal data, is likely correct.
+
 ![image](https://github.com/user-attachments/assets/4b0db35b-eedf-4573-84a4-f489039b06b9)
 > *Figure 5:* F1 score and ROC AUC for multi-modal NN and HINT benchmark
 
