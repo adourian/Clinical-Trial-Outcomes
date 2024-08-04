@@ -5,6 +5,7 @@
 Drug development is a lengthy, expensive, and high-risk process, typically taking 12 to 15 years and costing between 1 and 3 billion USD, with a success rate as low as 7.9% from Phase I to market. This project addresses the need for better decision-making tools in the pharmaceutical industry by predicting the outcomes of clinical trials using a multi-modal neural network architecture. By leveraging machine learning techniques, we provide a tool to estimate the chances of success for clinical trials, potentially reducing the high costs and risks associated with drug development. The main file for this project is clinical_trial_outcomes.ipynb.
 
 ![image](https://github.com/user-attachments/assets/a1d6b8c0-e531-47e1-b56a-b01f2f809e4c)
+***Figure 1: overview of process***
 
 ## Data
 
@@ -21,7 +22,7 @@ Main features include:
 The clinical trial phases are one-hot encoded. The text and SMILES features are transformed into semantically rich embeddings. Several embedding/language models were tested. 
 
 ![PCA_diseases](https://github.com/user-attachments/assets/560721c0-92cf-4339-b0bb-b369426add72)
-
+***Figure 2: PCA analysis of embeddings for diseases. Analysis carried out in Diseases.ipynb. Similar diseases are grouped close by together, suggesting that the embedding models effectively capture biologically relevant information about the diseases.*** 
 
 ## Data
 
