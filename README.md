@@ -29,15 +29,11 @@ The clinical trial phases are one-hot encoded. The text and SMILES features are 
 
 
 
-## Data
+## Modelling
 
-- **Source**: clinicaltrials.gov, compiled by Fu et al. (GitHub link to be added)
-- **Preprocessing**: 
-  - Data cleaning (removing NaNs)
-  - Separating inclusion/exclusion criteria
-  - One-hot encoding of phases
-  - Creating a 'number of drugs' feature
-  - Generating embeddings for textual features
+To leverage the feature-rich, multi-modal nature of the data, we employed a multi-modal neural network architecture. Each data type (excluding numerical data such as phases and number of drugs) is processed independently through its own neural network. This approach generates a learned representation for each data type. These learned representations are then concatenated (along with the numerical data) and fed into a final neural network, which outputs the probability of trial success.
+
+The rationale behind this architecture is to allow the model to discover relevant features specific to each data type more effectively. By processing each modality separately before combining them, the model can capture nuanced patterns within each data type. This approach enhances the model's ability to assess the probability of trial success by considering the unique contributions of each data modality.
 
 ## Performance
 
