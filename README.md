@@ -8,14 +8,20 @@ Drug development is a lengthy, expensive, and high-risk process, typically takin
 
 ## Data
 
-The dataset used in this project is derived from the official U.S. Food and Drug Administration (FDA) database at clinicaltrials.gov. The outcome labeling was performed by Fu et al. in their work on the HINT model [Link](https://arxiv.org/abs/2102.04252) and further refined by IQVIA, resulting in a benchmark dataset. We enhanced this dataset by incorporating brief trial descriptions retrieved from clinicaltrials.gov using the unique National Clinical Trial (NCT) identifiers.
+The dataset used in this project is derived from the official U.S. Food and Drug Administration (FDA) database at clinicaltrials.gov. The outcome labeling was performed by Fu et al. in their work on the HINT model [Link](https://arxiv.org/abs/2102.04252) and further refined by IQVIA, resulting in a benchmark dataset. We enhanced this dataset by incorporating brief trial descriptions retrieved from clinicaltrials.gov using the unique NCTID identifiers.
+
+Main features include:
 
 - Drug SMILES data
+- Number of drugs involved in trial
 - Disease names
-- Protocol descriptions
+- Protocol descriptions (Inclusion/exclusion criteria, brief text description of trial)
 - Clinical trial phases
 
-We create semantically rich, high-dimensional vector embeddings using domain-specific large language models such as ChemBERTa and MedBERT. These embeddings are then fed into separate neural networks to create learned representations, which are concatenated and processed by a final neural network to output success probabilities.
+The clinical trial phases are one-hot encoded. The text and SMILES features are transformed into semantically rich embeddings. Several embedding/language models were tested. 
+
+![PCA_diseases](https://github.com/user-attachments/assets/560721c0-92cf-4339-b0bb-b369426add72)
+
 
 ## Data
 
