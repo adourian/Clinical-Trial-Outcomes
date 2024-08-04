@@ -1,7 +1,5 @@
 # Clinical-Trial-Outcomes
 
-# Clinical-Trial-Outcomes
-
 ## Project Overview
 
 This project aims to predict the outcomes of clinical trials using a multi-modal neural network architecture. By leveraging machine learning techniques, we provide a tool to estimate the chances of success for clinical trials, potentially reducing the high costs and risks associated with drug development.
