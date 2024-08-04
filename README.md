@@ -6,9 +6,9 @@ Drug development is a lengthy, expensive, and high-risk process, typically takin
 
 ![image](https://github.com/user-attachments/assets/a1d6b8c0-e531-47e1-b56a-b01f2f809e4c)
 
-## Model Architecture
+## Data
 
-Our model uses a multi-modal neural network architecture, processing various inputs:
+The dataset used in this project is derived from the official U.S. Food and Drug Administration (FDA) database at clinicaltrials.gov. The outcome labeling was performed by Fu et al. in their work on the HINT model [Link](https://arxiv.org/abs/2102.04252) and further refined by IQVIA, resulting in a benchmark dataset. We enhanced this dataset by incorporating brief trial descriptions retrieved from clinicaltrials.gov using the unique National Clinical Trial (NCT) identifiers.
 
 - Drug SMILES data
 - Disease names
