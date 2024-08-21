@@ -86,9 +86,9 @@ For any questions or feedback, feel free to reach out:
 
 
 
-# Clinical-Trial-Outcomes
+''# Clinical-Trial-Outcomes
 
-## Project Overview
+''## Project Overview
 
 Drug development is a lengthy, expensive, and high-risk process, typically taking 12 to 15 years and costing between 1 and 3 billion USD, with a success rate as low as 7.9% from Phase I to market. This project addresses the need for better decision-making tools in the pharmaceutical industry by predicting the outcomes of clinical trials using a multi-modal neural network architecture. By leveraging machine learning techniques, we provide a tool to estimate the chances of success for clinical trials, potentially reducing the high costs and risks associated with drug development. The main file for this project is **clinical_trial_outcomes.ipynb**.
 
@@ -97,7 +97,7 @@ Drug development is a lengthy, expensive, and high-risk process, typically takin
 
 
 
-## Data
+''## Data
 
 The dataset used in this project is derived from the official U.S. Food and Drug Administration (FDA) database at clinicaltrials.gov. The outcome labeling was performed by Fu et al. ([1](https://arxiv.org/abs/2102.04252)) and further refined by IQVIA, resulting in a benchmark dataset. We enhanced this dataset by incorporating brief trial descriptions retrieved from clinicaltrials.gov using the unique NCTID identifiers.
 
@@ -117,7 +117,7 @@ The clinical trial phases are one-hot encoded. The text and SMILES features are 
 
 
 
-## Modelling
+''## Modelling
 
 To leverage the feature-rich, multi-modal nature of the data, we employed a multi-modal neural network architecture. Each data type (excluding numerical data such as phases and number of drugs) is processed independently through its own neural network. This approach generates a learned representation for each data type. These learned representations are then concatenated (along with the numerical data) and fed into a final neural network, which outputs the probability of trial success.
 
@@ -127,7 +127,7 @@ The rationale behind this architecture is to allow the model to discover relevan
 > *Figure 3:* Simplified representation of model. More details about architecture in notebook clinical_trial_outcomes.ipynb. 
 
 
-## Performance
+''## Performance
 
 The model performed better than the baseline model and XGBoost:
 
