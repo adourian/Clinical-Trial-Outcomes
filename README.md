@@ -4,13 +4,13 @@
 
 ## 📚 Table of Contents
 - [Project Overview](#project-overview)
-- [Installation](#installation)
-- [Data & Data Sources](#data--data-sources)
-- [Modelling](#modelling)
-- [Results](#results)
-- [License](#license)
-- [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
+- [Installation](#%EF%B8%8F-installation)
+- [Data & Data Sources](#-data--data-sources)
+- [Modelling](#-modelling)
+- [Results](#-results)
+- [License](#-license)
+- [Contact](#-contact)
+- [Acknowledgements](#-acknowledgements)
 
 ## 🚀 Project Overview
 
