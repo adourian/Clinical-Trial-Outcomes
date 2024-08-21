@@ -107,10 +107,10 @@ This approach ensured that we retained critical information from the text data w
 
 To leverage the multi-modal nature of the data, a multi-modal neural network architecture was employed. Each type of data (excluding numerical data such as phases and the number of drugs) is processed through a separate neural network to create a learned representation for that data type. These representations, along with the numerical data, are concatenated and fed into a final neural network that outputs the probability of trial success.
 
-This approach allows the model to extract and utilize features specific to each data type more effectively. By processing each modality separately before combining them, the model captures nuanced patterns within each data type, enhancing its ability to predict trial success.
-
 ![Model Architecture](https://github.com/user-attachments/assets/296275dd-f74e-451a-b090-4696400fc123)
 *Figure 4: Simplified representation of the multi-modal neural network architecture.*
+
+This approach allows the model to extract and utilize features specific to each data type more effectively. By processing each modality separately before combining them, the model captures nuanced patterns within each data type, enhancing its ability to predict trial success.
 
 ## 📈 Results
 
