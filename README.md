@@ -88,6 +88,8 @@ The PCA analysis of embeddings suggested that **MedBERT** provided the most prom
 
 #### SMILES Data & Clinical Trial Descriptions
 
+IMAGE????
+
 **SMILES** (Simplified Molecular Input Line Entry System) is a compact, readable notation used to represent chemical structures. It captures essential chemical information in a text format, making it ideal for computational tasks in cheminformatics. For embedding SMILES strings, **ChemBERTa** was chosen.
 **Clinical Trial Descriptions and Enrollment Criteria** often include complex textual information, such as trial protocols and inclusion/exclusion criteria. To process these texts effectively, we used **BioSimCSE**.
 
