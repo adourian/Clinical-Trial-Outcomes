@@ -60,49 +60,57 @@ All the relevant data can be found in the `/data` folder.
 
 ### 🧩 Feature Representation Using NLP
 
-Text data needs to be transformed into a format that can be processed by machine learning algorithms. In this project, we tackled four text features using natural language processing (NLP) techniques to create meaningful embeddings. Here’s a summary of our approach:
+Text data needs to be transformed into a format that can be processed by machine learning algorithms. In this project, we tackled four text features using natural language processing (NLP) techniques to create meaningful embeddings.
 
 #### Why Use NLP?
 
-Text data, such as SMILES, disease names and trial descriptions, cannot be fed directly into machine learning algorithms. To capture the significance of this data while retaining as much information as possible, we use embeddings. These embeddings convert text into numerical vectors that preserve semantic meaning.
+Text data, such as SMILES, disease names, and trial descriptions, cannot be fed directly into machine learning algorithms. Biomedical text, in particular, is complex and contains domain-specific terminology. To capture the significance of this data while retaining as much information as possible, we use embeddings. These embeddings convert text into numerical vectors that preserve semantic meaning, making the data suitable for machine learning tasks.
 
 ![NLP for ML example](https://github.com/user-attachments/assets/82f8e57f-2575-47c0-b079-41332c4b75d2)
 *Figure 2: Example of use case of NLP for Machine Learning tasks.*
 
 #### Disease Names
 
-Several pre-trained language models optimized for biomedical data were explored in the notebook `Disease_Embeddings.ipynb`:
+To represent disease names, we explored several pre-trained language models optimized for biomedical data, as detailed in the notebook `Disease_Embeddings.ipynb`:
 
-- **BERT**: A general-purpose model for comparison.
-- **BioBERT**, **BiomedBERT**, **MedBERT**, **tinyBioBERT**, **ClinicalBERT**, **BlueBERT**: Various domain-specific models trained on biomedical text corpuses.
+- **BERT**: A general-purpose model used for baseline comparison.
+- **BioBERT**, **BiomedBERT**, **MedBERT**, **tinyBioBERT**, **ClinicalBERT**, **BlueBERT**: Domain-specific models trained on biomedical text corpora to capture specialized knowledge.
 
-For disease names, we used domain-specific embeddings to capture the biomedical context:
+**Process:**
 
-1. **Exploration**: We evaluated several models for their ability to represent diseases meaningfully. We classified diseases into categories and obtained embeddings from each model.
-2. **Evaluation**: PCA analysis was performed on these embeddings to assess clustering and semantic similarity.
+1. **Generating Embeddings**: We used each model to generate embeddings for a set of categorized diseases. This step involves converting text data into numerical vectors that represent semantic information.
+   
+2. **Clustering Analysis**: PCA analysis was conducted on the embeddings to evaluate how well similar diseases were clustered together. This analysis helped us understand which model best preserved the semantic relationships between diseases.
 
 ![PCA Analysis](https://github.com/user-attachments/assets/560721c0-92cf-4339-b0bb-b369426add72)
 *Figure 3: PCA analysis of disease embeddings showing clustering of similar diseases.*
 
-The PCA analysis of embeddings suggested that **MedBERT** provided the most promising results due to its ability to cluster similar diseases closely together. TinyBioBERT was also found to perform quite well given its reduced size. 
+The PCA analysis of embeddings showed MedBERT as the most effective, clustering similar diseases closely. TinyBioBERT, despite its smaller size, also performed well, offering reduced dimensional complexity. Both models were tested in predictive modeling, but MedBERT ultimately delivered better results across architectures.
 
 #### SMILES Data & Clinical Trial Descriptions
 
-IMAGE????
+- **SMILES (Simplified Molecular Input Line Entry System)**: 
+  - A compact, readable notation for chemical structures, ideal for computational tasks in cheminformatics.
+  - **Chosen Embedding Model**: *ChemBERTa*.
 
-**SMILES** (Simplified Molecular Input Line Entry System) is a compact, readable notation used to represent chemical structures. It captures essential chemical information in a text format, making it ideal for computational tasks in cheminformatics. For embedding SMILES strings, **ChemBERTa** was chosen.
+- **Clinical Trial Descriptions and Enrollment Criteria**: 
+  - Include complex textual information such as trial protocols and inclusion/exclusion criteria.
+  - **Chosen Embedding Model**: *BioSimCSE*.
 
-**Clinical Trial Descriptions and Enrollment Criteria** often include complex textual information, such as trial protocols and inclusion/exclusion criteria. To process these texts effectively, we used **BioSimCSE**.
+##### Why ChemBERTa & BioSimCSE Were Chosen:
 
-**ChemBERTa** & **BioSimCSE** were chosen for two main reasons:
-- **Performance**: ChemBERTa is designed specifically for SMILES, maintains chemical details effectively and performs well on a variety of tasks.
-- **Integration**: It is compatible with the Hugging Face library, which facilitates easy implementation and manipulation.
+| **Criterion**   | **ChemBERTa** | **BioSimCSE** |
+|-----------------|---------------|---------------|
+| **Performance** | Tailored for SMILES, maintains chemical details, excels in various tasks. | Handles complex clinical text effectively. |
+| **Integration** | Compatible with Hugging Face, easy implementation. | Also integrates smoothly with Hugging Face. |
 
 #### Summary of Approach
 
 1. **Feature Representation**: Applied NLP techniques to convert text into embeddings.
 2. **Model Selection**: Evaluated multiple models and selected those that provided the best performance based on PCA analysis and literature research.
 3. **Tools**: Created text embedding functions to automatically embed text features for later use during modelling. These functions are dumped in the `helpers.py` file. 
+
+Below is an example function for generating embeddings from SMILES data using ChemBERTa:
 
 ```python 
 def build_ChemBERTa_features(smiles_list):
@@ -150,15 +158,43 @@ def build_ChemBERTa_features(smiles_list):
 
 This approach ensured that we retained critical information from the text data while making it suitable for machine learning models.
 
-### Outcome Prediction with Multi-Modal Neural Network
+### 🔮 Outcome Prediction with Multi-Modal Neural Network
 
-After experimenting with various architectures, what ended up working well is to use a multi-modal neural network architecture. 
-To leverage the multi-modal nature of the data, a multi-modal neural network architecture was employed. Each type of data (excluding numerical data such as phases and the number of drugs) is processed through a separate neural network to create a learned representation for that data type. These representations, along with the numerical data, are concatenated and fed into a final neural network that outputs the probability of trial success.
+In this section, we describe how we leveraged the feature representations created using NLP to predict the outcome of clinical trials. The process involves integrating multiple modalities of data into a unified model to make accurate predictions.
+
+#### Model Architecture Overview
+
+Our approach uses a multi-modal neural network architecture to handle the diverse types of data in our dataset. Here's a step-by-step breakdown of the process:
+
+1. **Feature Representation**: 
+   - **SMILES**: Processed through ChemBERTa to generate chemical embeddings.
+   - **Disease Names, Trial Descriptions, Criteria**: Embedded using domain-specific models like MedBERT and BioSimCSE.
+
+2. **Separate Neural Networks for Each Modality**:
+   - Each type of feature representation (e.g., SMILES embeddings, disease embeddings) is passed through its own dedicated neural network. This allows each network to learn features specific to the data type.
+
+3. **Learned Representations**:
+   - The outputs from these separate neural networks are learned representations of the input data. These representations capture the essential information for each feature type.
+
+4. **Concatenation**:
+   - The learned representations from each neural network are concatenated with numerical features, such as clinical trial phases and the number of drugs involved. This combined feature vector represents the complete set of inputs for the final prediction.
+
+5. **Joint Processing Layer**:
+   - The concatenated feature vector is processed by a joint neural network layer. This layer integrates information from all modalities to learn complex patterns and interactions.
+
+6. **Prediction**:
+   - The output of the joint processing layer is fed into a final prediction layer, which outputs the probability of the clinical trial's success or failure.
 
 ![Model Architecture](https://github.com/user-attachments/assets/296275dd-f74e-451a-b090-4696400fc123)
-*Figure 4: Simplified representation of the multi-modal neural network architecture.*
+*Figure 4: Simplified diagram of the multi-modal neural network architecture used for outcome prediction.*
 
-This approach allows the model to extract and utilize features specific to each data type more effectively. By processing each modality separately before combining them, the model captures nuanced patterns within each data type, enhancing its ability to predict trial success.
+#### Details of the Neural Network Architecture
+
+- **Separate Networks**: Each modality-specific neural network processes its corresponding feature type independently, allowing for specialized feature extraction.
+- **Concatenation and Integration**: The concatenated features from the separate networks are processed through a joint neural network to capture interactions between different types of data.
+- **Final Prediction Layer**: A dense layer provides the final probability of trial success, based on the integrated feature representations.
+
+This multi-modal approach enables the model to leverage the rich, complementary information provided by different feature types, enhancing its ability to predict clinical trial outcomes accurately. For detailed information about the neural network architecture, including the exact implementation and configuration of the networks, refer to the `clinical_trial_outcomes.ipynb` notebook in this repository.
 
 ## 📈 Results
 
