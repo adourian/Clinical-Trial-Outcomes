@@ -4,13 +4,13 @@
 
 ## 📚 Table of Contents
 - [Project Overview](#-project-overview)
-- [Installation](#%EF%B8%8F-installation)
 - [Data & Data Sources](#-data--data-sources)
 - [Modelling](#-modelling)
 - [Results](#-results)
 - [License](#-license)
+- [Installation](#%EF%B8%8F-installation)
 - [Contact](#-contact)
-- [Acknowledgements](#-acknowledgements)
+- [Acknowledgements](#acknowledgements)
 
 ## 🚀 Project Overview
 
@@ -20,18 +20,6 @@ Our approach involves building a multi-modal neural network that integrates vari
 
 ![Process Overview](https://github.com/user-attachments/assets/a1d6b8c0-e531-47e1-b56a-b01f2f809e4c)
 *Figure 1: Overview of the clinical trial prediction model.*
-
-## 🛠️ Installation
-
-To get started with this project, follow these steps:
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/adourian/Clinical-Trial-Outcomes.git
-   cd Clinical-Trial-Outcomes
-2. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
 
 ## 📊 Data & Data Sources
 
@@ -160,7 +148,7 @@ This approach ensured that we retained critical information from the text data w
 
 ### 🔮 Outcome Prediction with Multi-Modal Neural Network
 
-In this section, we describe how we leveraged the feature representations created using NLP to predict the outcome of clinical trials. The process involves integrating multiple modalities of data into a unified model to make accurate predictions.
+In this section, we describe how we leveraged the feature representations created using NLP to predict the outcome of clinical trials. The process involves integrating multiple modalities of data into a unified model to make accurate predictions. The idea is to allow for neural networks to learn complex features about each data modality separately before combining these learned features to learn about their interactions and make a prediction.
 
 #### Model Architecture Overview
 
@@ -173,10 +161,7 @@ Our approach uses a multi-modal neural network architecture to handle the divers
 2. **Separate Neural Networks for Each Modality**:
    - Each type of feature representation (e.g., SMILES embeddings, disease embeddings) is passed through its own dedicated neural network. This allows each network to learn features specific to the data type.
 
-3. **Learned Representations**:
-   - The outputs from these separate neural networks are learned representations of the input data. These representations capture the essential information for each feature type.
-
-4. **Concatenation**:
+3. **Concatenation**:
    - The learned representations from each neural network are concatenated with numerical features, such as clinical trial phases and the number of drugs involved. This combined feature vector represents the complete set of inputs for the final prediction.
 
 5. **Joint Processing Layer**:
@@ -188,17 +173,11 @@ Our approach uses a multi-modal neural network architecture to handle the divers
 ![Model Architecture](https://github.com/user-attachments/assets/296275dd-f74e-451a-b090-4696400fc123)
 *Figure 4: Simplified diagram of the multi-modal neural network architecture used for outcome prediction.*
 
-#### Details of the Neural Network Architecture
-
-- **Separate Networks**: Each modality-specific neural network processes its corresponding feature type independently, allowing for specialized feature extraction.
-- **Concatenation and Integration**: The concatenated features from the separate networks are processed through a joint neural network to capture interactions between different types of data.
-- **Final Prediction Layer**: A dense layer provides the final probability of trial success, based on the integrated feature representations.
-
 This multi-modal approach enables the model to leverage the rich, complementary information provided by different feature types, enhancing its ability to predict clinical trial outcomes accurately. For detailed information about the neural network architecture, including the exact implementation and configuration of the networks, refer to the `clinical_trial_outcomes.ipynb` notebook in this repository.
 
 ## 📈 Results
 
-The model showed improved performance over baseline models and XGBoost. Its performance was also comparable to the more complex GNN-based HINT model, suggesting that integrating rich, multi-modal data contributes significantly to the model’s effectiveness.
+The model showed improved performance over baseline models and XGBoost. Its performance was also comparable to the more complex GNN-based [HINT](https://arxiv.org/abs/2102.04252) model, suggesting that integrating rich, multi-modal data contributes significantly to the model’s effectiveness.
 
 ![Model Accuracy](https://github.com/user-attachments/assets/b7b4795e-66f5-4ca8-8e57-79bda40e96bb)
 *Figure 5: Accuracy comparison of the multi-modal neural network against baseline models and XGBoost.*
@@ -210,6 +189,18 @@ The model showed improved performance over baseline models and XGBoost. Its perf
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 🛠️ Installation
+
+To get started with this project, follow these steps:
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/adourian/Clinical-Trial-Outcomes.git
+   cd Clinical-Trial-Outcomes
+2. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+
 ## 📧 Contact
 
 For any questions or feedback, feel free to reach out:
@@ -217,8 +208,8 @@ For any questions or feedback, feel free to reach out:
 - **Email**: kari.adourian@gmail.com
 - **LinkedIn**: [LinkedIn](https://www.linkedin.com/in/kariadourian/)
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
-- **Fu et al. (1)**: For the original dataset.
+- **Fu et al.**: For the [original dataset](https://github.com/futianfan/clinical-trial-outcome-prediction/tree/main/data).
 - **ClinicalTrials.gov**: For the XML file containing information about all clinical trials.
 
