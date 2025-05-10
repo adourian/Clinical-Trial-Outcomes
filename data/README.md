@@ -4,7 +4,7 @@ The required datasets are too large to host directly in this repository.
 
 To download them, follow the instructions below:
 
-1. Visit: [HF Dataset Link]([kariad/clinical_trial_data](https://huggingface.co/datasets/kariad/clinical_trial_data))
+1. Visit: [HF Dataset Link](https://huggingface.co/datasets/kariad/clinical_trial_data)
 2. Download the `data.zip` file.
 3. Extract and place the contents in this `/data` folder.
 
