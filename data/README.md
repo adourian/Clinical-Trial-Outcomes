@@ -10,7 +10,11 @@ To download them, follow the instructions below:
 
 Ensure the structure matches this:
 data/
+
 ├── compiled_clinical_trials_data.csv
+
 ├── embedded_dataset.csv.csv
+
 ├── raw_data.csv
+
 └── read_xml.py
