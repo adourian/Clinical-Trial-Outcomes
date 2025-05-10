@@ -9,6 +9,7 @@ To download them, follow the instructions below:
 3. Extract and place the contents in this `/data` folder.
 
 Ensure the structure matches this:
+
 data/
 
 ├── compiled_clinical_trials_data.csv
