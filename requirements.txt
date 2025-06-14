@@ -12,7 +12,7 @@ sentence-transformers==3.0.1
 sklearn-pandas==2.2.0
 statsmodels==0.14.2
 tensorflow==2.17.0
-torch @ https://download.pytorch.org/whl/cu121/torch-2.3.1%2Bcu121-cp310-cp310-linux_x86_64.whl#sha256=f0deb5d2f932a68ed54625ba140eddbf2af22be978ee19b9b63c986add6425b2
+torch==2.7.0
 tqdm==4.66.5
 transformers==4.42.4
 xgboost==2.1.1
