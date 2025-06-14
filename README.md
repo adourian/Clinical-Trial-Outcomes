@@ -18,7 +18,7 @@ Drug development is a lengthy, expensive, and high-risk process, typically takin
 
 Our approach involves building a multi-modal neural network that integrates various data types to predict trial success. The main file for this project is `clinical_trial_outcomes.ipynb`.
 
-![Process Overview](https://github.com/user-attachments/assets/a1d6b8c0-e531-47e1-b56a-b01f2f809e4c)
+![image](https://github.com/user-attachments/assets/477f5546-f707-4526-9c31-540b85385fa4)
 *Figure 1: Overview of the clinical trial prediction model.*
 
 ## 📊 Data & Data Sources
@@ -148,41 +148,41 @@ This approach ensured that we retained critical information from the text data w
 
 ### 🔮 Outcome Prediction with Multi-Modal Neural Network
 
-In this section, we describe how we leveraged the feature representations created using NLP to predict the outcome of clinical trials. The process involves integrating multiple modalities of data into a unified model to make accurate predictions. The idea is to allow for neural networks to learn complex features about each data modality separately before combining these learned features to learn about their interactions and make a prediction.
+In this section, we describe how we leveraged rich feature representations generated via domain-specific NLP models to predict the outcome of clinical trials. Our approach integrates heterogeneous data modalities—chemical, textual, and numerical—into a unified architecture designed to preserve and exploit their unique structure. Rather than flattening all inputs into a single representation from the outset, we allow the model to first specialize per modality and then learn meaningful cross-modal interactions through attention.
 
 #### Model Architecture Overview
 
 Our approach uses a multi-modal neural network architecture to handle the diverse types of data in our dataset. Here's a step-by-step breakdown of the process:
 
 1. **Feature Representation**: 
-   - **SMILES**: Processed through ChemBERTa to generate chemical embeddings.
-   - **Disease Names, Trial Descriptions, Criteria**: Embedded using domain-specific models like MedBERT and BioSimCSE.
+   - **SMILES** strings are embedded using **ChemBERTa**, capturing structural and functional chemical information.
+   - **Disease names, trial descriptions, inclusion/exclusion criteria** are encoded using models like **BioSimCSE** and **MedBERT**, optimized for biomedical and clinical text.
 
-2. **Separate Neural Networks for Each Modality**:
-   - Each type of feature representation (e.g., SMILES embeddings, disease embeddings) is passed through its own dedicated neural network. This allows each network to learn features specific to the data type.
+2. **Modality-specific Towers**:
+   - Each input modality is routed through a **dedicated neural network tower**, allowing the model to learn features specific to the structure and distribution of that modality (e.g., chemical structure vs. clinical language).
+   - This modular approach improves representational depth while reducing destructive interference between unrelated feature types.
 
-3. **Concatenation**:
-   - The learned representations from each neural network are concatenated with numerical features, such as clinical trial phases and the number of drugs involved. This combined feature vector represents the complete set of inputs for the final prediction.
+3. **Attention-based Fusion**:
+   - The outputs of all towers are then fused using an **attention mechanism**, enabling the model to dynamically weight and integrate the most relevant information across modalities.
+   - This allows the model to learn context-sensitive interactions—for example, how trial design criteria may modulate the relevance of certain molecular properties.
 
-5. **Joint Processing Layer**:
-   - The concatenated feature vector is processed by a joint neural network layer. This layer integrates information from all modalities to learn complex patterns and interactions.
+5. **Joint Processing**:
+   - The fused representation is concatenated with numerical features (e.g., trial phase, number of drugs) and passed through a final prediction head, which outputs the probability of trial success.
 
-6. **Prediction**:
-   - The output of the joint processing layer is fed into a final prediction layer, which outputs the probability of the clinical trial's success or failure.
 
-![Model Architecture](https://github.com/user-attachments/assets/296275dd-f74e-451a-b090-4696400fc123)
+![image](https://github.com/user-attachments/assets/35150235-e3e1-4a23-b861-82f2c156db98)
 *Figure 4: Simplified diagram of the multi-modal neural network architecture used for outcome prediction.*
 
-This multi-modal approach enables the model to leverage the rich, complementary information provided by different feature types, enhancing its ability to predict clinical trial outcomes accurately. For detailed information about the neural network architecture, including the exact implementation and configuration of the networks, refer to the `clinical_trial_outcomes.ipynb` notebook in this repository.
+This design enables the model to learn complementary and context-dependent signals from each data source—rather than forcing them into a single representation too early. The use of attention ensures that downstream predictions are driven by the most informative cross-modal interactions for each case. For detailed implementation and configuration, see the `clinical_trial_outcomes.ipynb` notebook in this repository.
 
 ## 📈 Results
 
-The model showed improved performance over baseline models and XGBoost. Its performance was also comparable to the more complex GNN-based [HINT](https://arxiv.org/abs/2102.04252) model, suggesting that integrating rich, multi-modal data contributes significantly to the model’s effectiveness.
+The model showed a clear performance improvement over a vanilla MLP that processes all features jointly, demonstrating the value of separating input modalities into dedicated neural towers. Incorporating attention-based fusion further enhanced performance, enabling the model to learn richer, context-dependent interactions across modalities. Its results were also comparable to the more complex HINT model, reinforcing the importance of leveraging well-structured, multi-modal data representations.
 
-![Model Accuracy](https://github.com/user-attachments/assets/b7b4795e-66f5-4ca8-8e57-79bda40e96bb)
-*Figure 5: Accuracy comparison of the multi-modal neural network against baseline models and XGBoost.*
+![Model Accuracy](https://github.com/user-attachments/assets/03ba7d7f-ecf7-4b80-9f25-1f51f8245089)
+*Figure 5: F1 Score comparison of the multi-modal neural network against baseline MLP and XGBoost.*
 
-![Model Performance](https://github.com/user-attachments/assets/4b0db35b-eedf-4573-84a4-f489039b06b9)
+![Model Performance](https://github.com/user-attachments/assets/1e872d90-21c4-4e7f-a539-c17ca14d975a)
 *Figure 6: F1 score and ROC AUC for the multi-modal neural network compared to the HINT benchmark model.*
 
 ## 📜 License
