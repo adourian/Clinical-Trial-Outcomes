@@ -18,9 +18,7 @@ Drug development is a lengthy, expensive, and high-risk process, typically takin
 
 Our approach involves building a multi-modal neural network that integrates various data types to predict trial success. The main file for this project is `clinical_trial_outcomes.ipynb`.
 
-![Process Overview](![image](https://github.com/user-attachments/assets/235f0cda-0abb-494a-acbf-f88e91b37da1)
-)
-
+![image](https://github.com/user-attachments/assets/477f5546-f707-4526-9c31-540b85385fa4)
 *Figure 1: Overview of the clinical trial prediction model.*
 
 ## 📊 Data & Data Sources
@@ -172,18 +170,19 @@ Our approach uses a multi-modal neural network architecture to handle the divers
    - The fused representation is concatenated with numerical features (e.g., trial phase, number of drugs) and passed through a final prediction head, which outputs the probability of trial success.
 
 
-![Model Architecture](![image](https://github.com/user-attachments/assets/35150235-e3e1-4a23-b861-82f2c156db98))
+![image](https://github.com/user-attachments/assets/35150235-e3e1-4a23-b861-82f2c156db98)
 *Figure 4: Simplified diagram of the multi-modal neural network architecture used for outcome prediction.*
 
 This design enables the model to learn complementary and context-dependent signals from each data source—rather than forcing them into a single representation too early. The use of attention ensures that downstream predictions are driven by the most informative cross-modal interactions for each case. For detailed implementation and configuration, see the `clinical_trial_outcomes.ipynb` notebook in this repository.
+
 ## 📈 Results
 
-The model showed improved performance over baseline models and XGBoost. Its performance was also comparable to the more complex GNN-based [HINT](https://arxiv.org/abs/2102.04252) model, suggesting that integrating rich, multi-modal data contributes significantly to the model’s effectiveness.
+The model showed a clear performance improvement over a vanilla MLP that processes all features jointly, demonstrating the value of separating input modalities into dedicated neural towers. Incorporating attention-based fusion further enhanced performance, enabling the model to learn richer, context-dependent interactions across modalities. Its results were also comparable to the more complex HINT model, reinforcing the importance of leveraging well-structured, multi-modal data representations.
 
-![Model Accuracy](https://github.com/user-attachments/assets/b7b4795e-66f5-4ca8-8e57-79bda40e96bb)
-*Figure 5: Accuracy comparison of the multi-modal neural network against baseline models and XGBoost.*
+![Model Accuracy](https://github.com/user-attachments/assets/03ba7d7f-ecf7-4b80-9f25-1f51f8245089)
+*Figure 5: F1 Score comparison of the multi-modal neural network against baseline MLP and XGBoost.*
 
-![Model Performance](https://github.com/user-attachments/assets/4b0db35b-eedf-4573-84a4-f489039b06b9)
+![Model Performance](https://github.com/user-attachments/assets/1e872d90-21c4-4e7f-a539-c17ca14d975a)
 *Figure 6: F1 score and ROC AUC for the multi-modal neural network compared to the HINT benchmark model.*
 
 ## 📜 License
